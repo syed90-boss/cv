@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AI chatbot</title>
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+     <!-- Font awesome cdn -->
+     <script
+     src="https://kit.fontawesome.com/a2153b5117.js"
+     crossorigin="anonymous"
+   ></script>
+
+    <!-- Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--css-->
+    <link rel="stylesheet" href="css/Bot.css" />
+
+	<!-- Bootstrap scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--styles-->
+
+    <!--javascript-->
+    
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		const OPENAI_API_KEY = "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";
+		const OPENAI_API_URL = "https://api.openai.com/v1/engines/";
+
+		async function generateText(prompt) {
+		    const model = "text-davinci-003";
+		    const maxTokens = 1024;
+		    const temperature = 0.5;
+		    const response = await axios.post(`${OPENAI_API_URL}${model}/completions`, {
+		        prompt,
+		        max_tokens: maxTokens,
+		        temperature: temperature,
+		        n: 1,
+		        stop: null
+		    }, {
+		        headers: {
+		            'Content-Type': 'application/json',
+		            'Authorization': `Bearer ${OPENAI_API_KEY}`
+		        }
+		    });
+		    return response.data.choices[0].text;
+		}
+
+		async function handleSubmit(event) {
+		    event.preventDefault();
+		    const prompt = document.getElementById('prompt').value;
+		    const response = await generateText(prompt);
+		    document.getElementById('response').innerText = response;
+		}
+
+    //voicescript
+		var recognition = new webkitSpeechRecognition();
+    recognition.onresult = function(event) { document.getElementById('prompt').value = event.results[0][0].transcript;
+    handleSubmit(event); }
+    recognition.start();
+           //outputvoicescript
+    function speakResponse(){
+      var response = document.getElementById('response').innerText;
+      var msg = new SpeechSynthesisUtterance(response);
+      window.speechSynthesis.speak(msg);
+      }
+	</script>
+</head>
+<body>
+    
+    <!--nav bar-->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="index.html">Chatbot</a>
+        <a href="about.html">About</a>
+        </nav>
+
+  
+
+
+	<form onsubmit="handleSubmit(event); speakResponse();" >
+        <h1 class="milk">AI CHATBOT</h1>
+        <p>Disclaimer : This is the first chatbot ever integrated with the Artificial intelligence and machine learning algorithms. </p>
+		<label for="prompt">Ask the questions!</label>
+		<input type="text" id="prompt" name="prompt" autofocus>
+    <button type="submit" class="btn  click "> <i class="fa-sharp fa-solid fa-paper-plane"></i></button>
+    <button type="submit" onclick="recognition.start()" class="btn  click2 "> <i class="fa-sharp fa-solid fa-microphone"></i></button>
+		<!-- <button class="click" type="submit">submit</button> -->
+	</form>
+	<p id="response"></p>
+
+	 <!-- Call to Action -->
+
+	 <section id="cta">
+		<h4 class="cta-heading">Download the beta version of AI chatbot 1.0v at playstore and macstore.</h3>
+		<button type="button" class="btn btn-dark btn-lg download-button"><i class="fa-brands fa-apple"></i> Download</button>
+		<button type="button" class="btn btn-light btn-lg download-button"><i class="fa-brands fa-google-play"></i> Download</button>
+	  </section>
+
+     <!-- Footer -->
+
+   <footer id="footer">
+    <a class="footer-link" href="https://www.facebook.com/"><font style="vertical-align: inherit"><i class="social-icon fa-brands fa-facebook-f"></i></font></a>
+    <a class="footer-link" href="https://www.twitter.com/"><font style="vertical-align: inherit"><i class="social-icon fa-brands fa-twitter"></i></font></a>
+    <a class="footer-link" href="https://www.instagram.com/"><font style="vertical-align: inherit"><i class="social-icon fa-brands fa-instagram"></i></font></a>
+    <a class="footer-link" href="https://www.envelope.com/"><font style="vertical-align: inherit"><i class="social-icon fa-solid fa-envelope"></i></font></a>
+    <p>© Copyright 2023 VSA.</p>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+
+       /* AI-chatbots css */
+
+       
+       body {
+        font-family: sans-serif;
+        font-size: 16px;
+        background-color: lightgrey;
+        text-align: center;
+        }
+        
+        h1{
+            font-family: 'Montserrat', sans-serif;
+            color: rgb(37, 36, 36);
+        }
+
+        form {
+        max-width: 650px;
+        margin: 0 auto;
+        }
+        
+        label {
+        display: block;
+        }
+        
+        input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        }
+        
+        .click {
+        margin-top: 10px;
+        padding: 5px;
+        background-color: #0099ff;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        }
+
+        .click2 {
+            margin-top: 10px;
+            padding: 5px;
+            background-color: red;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            }
+        
+        #response {
+        margin-top: 10px;
+        font-size: 16px;
+        }
+
+        .milk{
+            padding-top: 30px;
+        }
+
+        /* nav */
+
+    
+    
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+            }
+            
+            nav a {
+            color: #000000;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            }
+
+            /* footer */
+#footer{
+    text-align: center;
+    padding: 1% 5%;
+}
+.social-icon{
+    padding: 20px 10px;
+}
+
+/* download button */
+
+.download-button{
+    margin: 5% 3% 5%;
+}
+
+/* Call to Action */
+#cta{
+    text-align: center;
+    padding: 3% 15%;
+     color: black; 
+}
+.cta-heading{
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    /* font-weight: 50; */
+}
+
+.com{
+    width: 40%;
+    margin: 40px auto 40px;
+}
